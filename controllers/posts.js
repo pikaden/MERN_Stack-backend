@@ -1,6 +1,8 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+import Comment from "../models/Comment.js";
 
+// POST
 /* CREATE */
 export const createPost = async (req, res) => {
   try {
@@ -71,3 +73,40 @@ export const likePost = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 };
+
+// COMMENT
+
+// GET COMMENT OF SPECIFIC POST
+export const getComment = async (req, res) => {
+  try {
+    const { postId } = req.params;
+
+    const comments = await Post.findById(postId).populate('comments');
+    
+    res.status(200).json(comments);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+}
+
+// CREATE
+export const addComment = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    req.body.user = req.user.id;
+    console.log(req.user);
+
+    const comment = await Comment.create(req.body);
+
+    await Post.findById(postId)
+      .then(post => {
+        post.comments.push(comment._id);
+
+        post.save();
+      });
+    
+    res.status(200).json(comment);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+}
