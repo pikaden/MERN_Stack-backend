@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "d77eb1c3-c6eb-4ca0-b250-3bf3af7dd839",
+		"name": "SDN301m final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23683335",
+		"_collection_link": "https://warped-robot-448536.postman.co/workspace/Team-Workspace~2c22e6c2-cb4d-4c88-830f-129f1a6b03bd/collection/23683335-d77eb1c3-c6eb-4ca0-b250-3bf3af7dd839?action=share&creator=23683335&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"abc@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}auth/login/",
+							"host": [
+								"{{localhost}}auth"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"abc\",\r\n    \"lastName\": \"aaa\",\r\n    \"email\": \"ae@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"picturePath\": \"Attack9.png\",\r\n    \"friends\": [],\r\n    \"location\": \"aaa\",\r\n    \"occupation\": \"asdadsas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}auth/register/",
+							"host": [
+								"{{localhost}}auth"
+							],
+							"path": [
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{users}}/{{userId}}",
+							"host": [
+								"{{localhost}}{{users}}"
+							],
+							"path": [
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user friends",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{users}}/{{userId}}/{{friends}}",
+							"host": [
+								"{{localhost}}{{users}}"
+							],
+							"path": [
+								"{{userId}}",
+								"{{friends}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add or remove friends",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{users}}/{{userId}}/{{friendId}}",
+							"host": [
+								"{{localhost}}{{users}}"
+							],
+							"path": [
+								"{{userId}}",
+								"{{friendId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "comment",
+					"item": [
+						{
+							"name": "post comment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comment\": \"boom sida\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{posts}}/{{postId}}/{{comments}}",
+									"host": [
+										"{{localhost}}{{posts}}"
+									],
+									"path": [
+										"{{postId}}",
+										"{{comments}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get comment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{posts}}/{{postId}}/{{comments}}",
+									"host": [
+										"{{localhost}}{{posts}}"
+									],
+									"path": [
+										"{{postId}}",
+										"{{comments}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTkzMDY3ODIxNzY3MWM5MzU0YzM0YiIsImlhdCI6MTY4OTUwMDA1MywiZXhwIjoxNjg5NTAzNjUzfQ.1BS2lbGA9h4jc86Os3RgDD0prJEE-h-eiMVXeu6ENLw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "http://localhost:3001/",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "64a930678217671c9354c34b"
+		},
+		{
+			"key": "users",
+			"value": "users"
+		},
+		{
+			"key": "friends",
+			"value": "friends"
+		},
+		{
+			"key": "friendId",
+			"value": "64a92ec922630f90e5c82e7a"
+		},
+		{
+			"key": "postId",
+			"value": "64b35b3100fbfda2af8d0fc1",
+			"type": "string"
+		},
+		{
+			"key": "posts",
+			"value": "posts"
+		},
+		{
+			"key": "comments",
+			"value": "comments"
+		}
+	]
+}
